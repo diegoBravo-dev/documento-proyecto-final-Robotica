@@ -27,7 +27,10 @@ Sus aplicaciones más comunes en la industria son:
    - Paletizado de productos pesados 
    - Atornillado de alto par.
 
+
 ![Brazo colaborativo UR30](assets/img/ur30.png)
+
+> Modelo del brazo colaborativo [UR30](https://robodk.com/3D/es/robot/UR30) extraído desde **RoboDK**
 
 ---
 
