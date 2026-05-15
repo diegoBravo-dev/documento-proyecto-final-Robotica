@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Estructura del repositorio
+title: Cinemática Directa
 nav_order: 3
 ---
 

@@ -104,4 +104,4 @@ A continuación se mostrará el modelo.
 ---
 
 ## Siguiente sección
-[Estructura del repositorio ](02-estructura-del-repo.md)
+[Cinemática Directa](02-cinematica-directa.md)
