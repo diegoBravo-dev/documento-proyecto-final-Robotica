@@ -138,7 +138,7 @@ Los resultados que se muestran a continuación tienen un margen de error muy peq
 
 Para el resto de la simulación, la cinemática directa es uno de los elementos que se está actualizando y ejecutando constantemente para realizar la trayectoria que debe de cumplir el robot.
 
-> Para mayor información visitar el repositorio de [Github asociado al proyecto](https://github.com/diegoBravo-dev/Proyecto-Final-de-Rob-tica-con-un-UR30-en-Robodk)
+> Para mayor información visitar el repositorio de [Github asociado al proyecto](https://github.com/diegoBravo-dev/Proyecto-Final-de-Rob-tica-con-un-UR30-en-Robodk) en los método `CinematicaDirecta(self)`, `Posicion(self)` y `Orientacion(self)` de `UR30_Class.py` 
 
 ---
 

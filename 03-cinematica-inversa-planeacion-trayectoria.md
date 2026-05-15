@@ -1,419 +1,226 @@
 ---
 layout: default
-title: Escribir en Markdown
+title: Cinemática Inversa y Planificación de trayectoria
 nav_order: 4
 ---
 
-# Escribir en Markdown
+# Cinemática Inversa y Planificación de trayectoria
 
-Markdown es el formato principal para escribir contenido en tu sitio (Just the Docs). La idea es que puedas crear páginas claras y consistentes, sin depender de Word ni formatos complicados.
-
----
-
-## 1) Encabezados (títulos)
-
-Código:
-
-```md
-# Título de la página (H1)
-## Sección (H2)
-### Subsección (H3)
-```
-
-Ejemplo (cómo se ve):
-
-**Título de la página (H1)**  
-**Sección (H2)**  
-**Subsección (H3)**
-
-- En cada página usa **un solo H1** (el título de la página).
-- Dentro del contenido usa **H2 para secciones** y **H3 para subsecciones**.
-- Mantén frases cortas y listas para pasos o requerimientos.
-
+En esta sección, se abordará el método empleado para la cinemática inversa y los métodos de planificación de trayectoria para poder resolver el problema industrial.
 
 ---
 
-## 2) Negritas, cursivas y texto en línea
+## Cinemática Inversa
 
-Código:
+La cinemática inversa consiste en satisfacer una pose deseada, es decir una posición y orientación deseada para el Efector Final. Por lo tanto, lo que se busca obtener de esta operación es una configuración adecuada de las articulaciones que lleven la herramienta a un punto en el espacio de referencia deseado.
 
-```md
-**negrita**
-*cursiva*
-`codigo en linea`
-```
+Para ello, existen diversos métodos que permiten resolver este problema. El que se empleó en este proyecto fue un método numérico.
 
-Ejemplos (cómo se ve):
-- **Entrega final** el viernes.
-- *Entrega final* el viernes.
-- Usa `git status` para ver cambios.
+### Método de Levenberg-Marquadt
 
----
+Es un algoritmo de optimización que resuelve problemas de mínimos cuadrados no lineales. Combina lo mejor del método de Gauss-Newton y Gradiantes descendentes, transicionando suavemente entre ambos según qué tan cerca está del mínimo.
 
-## 3) Listas (viñetas, numeradas y tareas)
+En robótica es un método comunmente usado para robots quirurgicos, brazos manipuladores, prótesis y androides.
 
-### Viñetas
+Para poder implementarlo, se deben de dar una pose deseada como argumento, es decir, una posición cartesiana (en m) y una orientación angular (en éje-ángulo).
 
-Código:
-
-```md
-- Punto 1
-- Punto 2
-  - Subpunto 2.1
-```
-
-Ejemplo (cómo se ve):
-- Punto 1
-- Punto 2
-  - Subpunto 2.1
-
-### Numeradas (pasos)
-
-Código:
-
-```md
-1. Abre Codespaces
-2. Edita el archivo
-3. Haz commit
-4. Haz push
-```
-
-Ejemplo (cómo se ve):
-1. Abre Codespaces
-2. Edita el archivo
-3. Haz commit
-4. Haz push
-
-### Checklists (útiles para entregas)
-
-Código:
-
-```md
-- [ ] Agregué portada (index.md)
-- [ ] Publiqué en GitHub Pages
-- [ ] Verifiqué Actions en verde
-```
-
-Ejemplo (cómo se ve):
-- [ ] Agregué portada (index.md)
-- [ ] Publiqué en GitHub Pages
-- [ ] Verifiqué Actions en verde
-
----
-
-## 4) Enlaces (a páginas, secciones, archivos y web)
-
-### Enlace a otra página del sitio
-
-Código:
-
-```md
-[Ir a Estructura del repositorio](02-estructura-del-repo.md)
-```
-
-Ejemplo (cómo se ve):  
-[Ir a Estructura del repositorio](02-estructura-del-repo.md)
-
-### Enlace a una sección dentro de la misma página (ancla)
-
-Primero, crea un encabezado:
-
-```md
-## Mi Seccion Importante
-```
-
-Luego enlaza así:
-
-```md
-[Ir a Mi Seccion Importante](#mi-seccion-importante)
-```
-
-Ejemplo (cómo se ve):  
-[Ir a Mi Seccion Importante](#mi-seccion-importante)
-
-> Nota: los espacios se convierten en guiones y todo queda en minúsculas.
-
-### Enlace a un archivo (PDF, ZIP, etc.)
-
-Guarda el archivo en `assets/files/` y enlaza así:
-
-```md
-[Descargar hoja de datos](assets/files/calendario.pdf)
-```
-
-Ejemplo (cómo se ve):  
-[Descargar hoja de datos](assets/files/calendario.pdf)
-
-### Enlace externo
-
-Código:
-
-```md
-[GitHub](https://github.com)
-```
-
-Ejemplo (cómo se ve):  
-[GitHub](https://github.com)
-
----
-
-## 5) Imágenes (y buenas prácticas de rutas)
-
-Guarda imágenes en `assets/img/`.
-
-Código:
-
-```md
-![Diagrama del sistema](assets/img/diagrama-sistema.png)
-```
-
-Ejemplo (cómo se ve):  
-(El ejemplo renderiza cuando la imagen existe en esa ruta)
-
-<!-- Ejemplo sugerido usando un archivo que normalmente ya existe en la plantilla -->
-![Ejemplo (logo)](assets/img/logotipo.png)
-
-Buenas prácticas:
-- Usa nombres consistentes: `fig15-...`, `diagrama-...`, `captura-...`
-- Evita espacios y acentos en nombres de archivo.
-- Respeta mayúsculas/minúsculas (en web sí importa).
-
----
-
-## 6) Video (opciones recomendadas)
-
-### Opción A: Enlace
-
-Ideal para no romper el diseño.
-
-Código:
-
-```md
-[Ver video de demostración (YouTube)](https://www.youtube.com/watch?v=ID_DEL_VIDEO)
-```
-
-Ejemplo (cómo se ve):  
-[Ver video de demostración (YouTube)](https://www.youtube.com/watch?v=6om9bh6pz_s)
-
-### Opción B: Embed
-
-Puedes incrustar un video con HTML. Úsalo con moderación.
-
-Código:
-
-```html
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=ID_DEL_VIDEO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-</iframe>
-```
-
-Ejemplo (cómo se ve):
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6om9bh6pz_s?si=vGGN_nxT5MHCHusO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-</iframe>
-
-### Opción C: Video MP4 (archivo local en tu repositorio)
-
-1) Guarda tu video en una carpeta del repo, por ejemplo:
-- `assets/videos/` (recomendado para mantener orden), o
-- `assets/img/` (si ya estás usando esa ruta en tu curso)
-
-2) Inserta el video con HTML:
-
-Código:
-
-```html
-<video controls width="720">
-  <source src="{{ '/assets/videos/demo.mp4' | relative_url }}" type="video/mp4">
-  Tu navegador no soporta video HTML5.
-</video>
-```
-
-Ejemplo (cómo se ve):  
-(Solo renderiza cuando exista `assets/videos/demo.mp4` en tu repo)
-
-<video controls width="720">
-  <source src="{{ '/assets/videos/demo.mp4' | relative_url }}" type="video/mp4">
-  Tu navegador no soporta video HTML5.
-</video>
-
-Recomendaciones:
-- Mantén los MP4 **ligeros** (clips cortos). Archivos muy grandes hacen el repo pesado y lento de descargar.
-- Usa nombres simples: `demo-robot.mp4`, `calibracion-01.mp4`.
-
----
-
-## 7) Código (bloques con resaltado y fragmentos)
-
-### Bloque con resaltado
-
-Código:
-
-````md
-```python
-print("hola")
-```
-````
-
-Ejemplo (cómo se ve):
+Primero, se debe de inicializar los parámetros de optimización para realizar la evaluación numérica:
 
 ```python
-print("hola")
+# PARÁMETROS DE OPTIMIZACIÓN
+max_iteraciones = 1000
+tol = 1e-8
+mu = 1e-3
+q = array(deg2rad(θ))
 ```
 
-### Bloque sin lenguaje (texto plano)
+> Nota: Siempre se debe de trabajar en radianes para realizar este tipo de operaciones
 
-Código:
+Posteriormente, se debe de calcular la **Cinemática Directa** del Efector Final con respecto a la referencia, además de guardar cada matriz homogenea calculada durante la iteración de la Cinemática directa. Esta será útil para obtener el **Jacobiano**
 
-````md
-```text
-git status
-git add .
-git commit -m "mensaje"
-git push
-```
-````
+```python
+T0_tool, T_stack = self.DH_Solve_t_stack(qs)
 
-Ejemplo (cómo se ve):
-
-```text
-git status
-git add .
-git commit -m "mensaje"
-git push
+posicionTool = [T0_tool[0][3], T0_tool[1][3], T0_tool[2][3]]
+rotacionTool = T0_tool[:3, :3]
 ```
 
-### Código en línea
+También, se debe de transformar el vector éje-ángulo a su equivalente en **Matriz de rotación**
 
-Código:
+Para obtener la matriz de rotación, se debe de aplicar la fórmula de Rodrigues, la cual necesita de diversos elementos. El primero es ángulo de rotación, que se obtiene con la normal del vector eje-ángulo.
 
-```md
-Usa `git status` para ver cambios.
+```python
+theta = norm(rv)
 ```
 
-Ejemplo (cómo se ve):  
-Usa `git status` para ver cambios.
+El segundo, es obtener el eje unitario, que se obtiene dividiendo el vector éje-ángulo sobre el ángulo de rotación.
+
+```python
+u = rv / theta
+```
+
+Posteriormente, hay que obtener la matriz antisimétrica del eje unitario.
+
+```python
+Ux = array([[0, -u[2], u[1]],
+            [u[2], 0, -u[0]],
+            [-u[1], u[0], 0]])
+```
+
+Y finalmente, aplicar la fórmula de Rodrigues para obtener la matriz de orientación
+
+```python
+R = eye(3) + sin(theta) * Ux + (1 - cos(theta)) * (Ux @ Ux)
+```
+
+Posteriormente, se debe de construir el jacobiano geométrico, columna por columna.
+
+```python
+o_n = T0_tool[:3, 3]          # posición del TCP en mundo
+z_p = array([0, 0, 1])        # eje z de la base (frame 0)
+o_p = array([0, 0, 0])        # origen de la base
+
+J[:, 0] = concatenate([cross(z_p, o_n - o_p), z_p])
+
+for i in range(1, 6):
+    z_i = T_stack[i-1][:3, 2]   # eje z del frame i
+    o_i = T_stack[i-1][:3, 3]   # origen del frame i
+    J[:, i] = concatenate([cross(z_i, o_n - o_i), z_i])
+```
+
+Además, se debe de obtener los errores de orientación y posición, para aquel se debe de aplicar un producto cruz por las dos matrices de rotación.
+
+```python
+#Error de posición
+ep = array([xd - posicionTool[0],
+            yd - posicionTool[1],
+            zd - posicionTool[2]])
+        
+#Error de Orientación (Vectorial para compatibilidad con J)
+ew_vec = 0.5 * (cross(rotacionTool[:,0], Rd[:,0]) + cross(rotacionTool[:,1], Rd[:,1]) + cross(rotacionTool[:,2], Rd[:,2]))
+```
+
+Y posteriormente, realizar una comprobación en caso de que exista una singularidad:
+
+```python
+if det(J) == 0:
+  error_f = norm(ep) + norm(ew_vec) + 1000
+  print("--- Singularidad ---\n")
+else:
+  error_f = norm(ep) + norm(ew_vec)
+
+```
+
+Una vez con estos datos obtenidos, se puede realizar una comprobación inicial. En caso de que el error final es menor a la toleracia, se rompe el ciclo de iteraciones
+
+Posteriormente, se realiza el cálculo de Levenberg-Marquadt:
+
+```python
+#Cálculo de Levenberg-Marquadt
+A = J.T @ J + mu * eye(6)
+g = J.T @ e_vector
+dq = solve(A, g)
+
+q_new = q + dq
+```
+
+Se evalua la mejora, y si el error nuevo es menor al actual, entonces la nueva configuración de las articulaciones se guarda y el parámetro de mu (que dictamina si confiar más en Guass-Newton o en Gradiantes descendentes) se multiplica o divide por 10
+
+```python
+if error_nuevo < error_actual and not any(isnan(q_new)):
+    q = q_new
+    mu /= 10
+else:
+    mu *= 10
+```
+
+> Nota: importante transformar la configuración final a grados, pues RoboDK y Universal Robots trabajan con estos.
 
 ---
 
-## 8) Tablas
+## Planificación de trayectoria mediante Polinomio Quíntico
 
-Código:
+Una vez obtenido la pose deseada, se debe de trazar un listado de configuraciones que se deben de modificar en tiempo real para poder llegar de una pose A a una B. A esto se le conoce como planificación de trayectoria.
 
-```md
-| Campo | Tipo | Ejemplo |
-|------:|:----:|:--------|
-| RAM   | GB   | 8       |
-| CPU   | x86  | i5      |
+Al igual que la cinemática inversa, existen muchos métodos que permiten la creación de dichas trayectorias. Sin embargo, sólo se van a abordar dos.
+
+### Método de polinomio quíntico
+
+Una trayectoria quíntica se define mediante un polinomio de quinto grado, lo que significa que tiene seis coeficientes que determinan completamente el movimiento.
+
+La principal ventaja del polinomio quíntico es que permite controlar simultáneamente tres magnitudes físicas (posición, velocidad y aceleración) en los puntos inicial y final de la trayectoria, garantizando un movimiento completamente predecible.
+
+Para poder Implementarlo, se debe de tomar en cuenta que se cuenta con 6 grados de libertad a controlar, por lo que las operaciones deberán de ser vectoriales y matriciales.
+
+Primero, se debe de establecer los parámetros iniciales y finales de las velocidades angulares y aceleraciones angulares de cada articulación, además de establecer parámetros de tiempo para generar la trayectoria con respecto a un tiempo y paso definido previamente.
+
+También se debe de crear la matriz de tiempos, la cuál sera importante para hallar los coeficientes indicados para obtener la configuración angular adecuada.
+
+```python
+ω0 = zeros(6)
+α0 = zeros(6)
+ωf = zeros(6)
+αf = zeros(6)
+
+t0 = 0
+tf = 10
+h = 0.5
+
+A = array([
+  [t0**5   , t0**4   , t0**3  , t0**2, t0, 1],
+  [5*t0**4 , 4*t0**3 , 3*t0**2, 2*t0 , 1 , 0],
+  [20*t0**3, 12*t0**2, 6*t0   , 2    , 0 , 0],
+  [tf**5   , tf**4   , tf**3  , tf**2, tf, 1],
+  [5*tf**4 , 4*tf**3 , 3*tf**2, 2*tf , 1 , 0],
+  [20*tf**3, 12*tf**2, 6*tf   , 2    , 0 , 0]
+])
+    
+t = arange(t0, tf+h, h)
+
+θ_all = []
+ω_all = []
+α_all = []
 ```
 
-Ejemplo (cómo se ve):
+Ahora, se debe de construir la matriz de requisitos de movimiento, la cual se evaluará con los valores de la matriz de tiempos y su resultado darán los coeficientes para el polinomio quíntico.
 
-| Campo | Tipo | Ejemplo |
-|------:|:----:|:--------|
-| RAM   | GB   | 8       |
-| CPU   | x86  | i5      |
+```python
+B = array([
+    θ0[i], ω0[i], α0[i],
+    θf[i], ωf[i], αf[i],
+])
 
-Buenas prácticas:
-- No abuses de tablas anchas (en móvil se vuelven incómodas).
-- Si la tabla se vuelve enorme, considera dividir en 2 o pasar a lista.
-
----
-
-## 9) Citas y separadores
-
-### Cita (blockquote)
-
-Código:
-
-```md
-> Esto es una cita o nota rápida.
+X = solve(A, B)
+a5, a4, a3, a2, a1, a0_ = X
 ```
 
-Ejemplo (cómo se ve):
+Con el polinomio quíntico, se debe de obtener las configuraciones para la posición angular, la aceleración angular y velocidad angular.
 
-> Esto es una cita o nota rápida.
+```python
+q = a5*t**5 + a4*t**4 + a3*t**3 + a2*t**2 + a1*t + a0_
+w = 5*a5*t**4 + 4*a4*t**3 + 3*a3*t**2 + 2*a2*t + a1
+acc = 20*a5*t**3 + 12*a4*t**2 + 6*a3*t + 2*a2
 
-### Separador
-
-Código:
-
-```md
----
+θ_all.append(q)
+ω_all.append(w)
+α_all.append(acc)
 ```
 
-Ejemplo (cómo se ve):
+Por último, estos pasos se tienen que iterar de acuerdo al número de articulaciones del robot. Para este caso, sólo basta con seis veces.
+
+### Método heurístico
+
+Para el método herístico únicamente basta con trazar una trayectoria que vaya cambiando la posición angular con respecto al tiempo en el que se encuentre.
+
+Es decir, se desea llegar de un punto A a un punto D, pasando por B y C. Lo que hace el método heurístico es que se dependiendo el instante del tiempo, el punto se moverá a A, B o C hasta llegar a D en un determinado momento.
 
 ---
 
+## Demostración
 
----
+A continuación, se mostrará un video que implementa estas tres técnicas para trazar la trayectoria y realizar una parte de la tarea completa del robot.
 
-## 10) Bloques colapsables 
 
-Puedes usar HTML nativo.
-
-Código:
-
-```html
-<details>
-  <summary>Ver solución</summary>
-
-  Aquí va la explicación o solución paso a paso.
-</details>
-```
-
-Ejemplo (cómo se ve):
-
-<details>
-  <summary>Ver solución</summary>
-
-  Aquí va la explicación o solución paso a paso.
-</details>
-
----
-
-## 11) Plantilla rápida para una página del curso
-
-Copia y adapta.
-
-Código (front matter):
-
-```yml
----
-layout: default
-title: Titulo de mi pagina
-nav_order: 50
----
-```
-
-Ejemplo (cómo se vería al inicio de un archivo `mi-pagina.md`):
-
-```yml
----
-layout: default
-title: Mi pagina de ejemplo
-nav_order: 50
----
-```
-
-Y debajo, tu contenido:
-
-```md
-## Objetivo
-- Explicar un concepto de forma clara.
-
-## Materiales
-- 1 imagen
-- 1 enlace
-- 1 PDF
-
-## Pasos
-1. Paso 1
-2. Paso 2
-
-## Evidencia
-- Foto / captura / enlace
-```
 
 ---
 
