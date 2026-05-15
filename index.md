@@ -26,7 +26,7 @@ Para poder cumplir con el ciclo, se implementaron diversas técnicas de planeaci
 
 
 Contenido:
-- [1. Elementos destacables del espacio de trabajo](01-publicar-en-github-pages.md)
+- [1. Elementos destacables del espacio de trabajo](01-workspace.md)
 - [2. Cinemática Directa](02-estructura-del-repo.md)
 - [3. Cinemática Inversa y Planificación de Trayectorias](03-markdown.md)
 - [4. Control Cinemático](04-estilos.md)
