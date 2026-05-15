@@ -32,6 +32,38 @@ Sus aplicaciones más comunes en la industria son:
 
 > Modelo del brazo colaborativo [UR30](https://robodk.com/3D/es/robot/UR30) extraído desde **RoboDK**
 
+### Características principales del UR30
+
+   - **Seis grados de libertad** representado en sus seis articulaciones que lo componen
+   - **Repetitividad de ± 0.1 mm** que garantiza una precisión constantes en tareas que se repiten con frecuencia
+   - **Peso de 65 kg** lo que lo hace relativamente ligero y fácil de reubicar
+   - **Consumo Eléctrico de aproximadamente 300 W** en uso típico (máximo de 750 W).
+   - **Torque elevado** para manejar un par de torsión alto
+   - **Diversas funciones de seguridad configurables**, como detección de fuerza y colisión, permitiéndole trabajar junto a operarios sin necesidad de vallas de seguridad
+   - **Grado de Protección con certificación IP65**, lo que lo protege contra el polvo y chorros de agua
+   - **Huella Compacta con una base de solo Ø 245 mm** para instalarse en celdas de trabajo donde el espacio es muy limitado.
+
+### Parámetros de Denavit-Hatenberg 
+
+Los parámetros de Denavit-Hartenberg (DH) son un método sistemático para representar las cadenas cinemáticas de los brazos robóticos. Simplifican el modelado matemático de robots al proporcionar una notción estándar para describir las posiciones y orientaciones relativas de los enlaces adyacentes. Los cuatro parámetros DH —longitud del enlace, torsión del enlace, desplazamiento del enlace y ángulo de la articulación— permiten la descripción precisa de cada articulación en términos de un sistema de coordenadas común, lo que facilita la derivación de las ecuaciones cinemáticas necesarias para controlar el movimiento del robot.
+
+A continuación se mostrará un diagrama que ayuda a la forma en la que se obtienen dichos parámetros.
+
+![Diagrama de parámetros DH](assets/img/kinematic.png)
+
+> Diagrama de parámetros de DH para robots [UR](https://www.universal-robots.com/articles/ur/application-installation/dh-parameters-for-calculations-of-kinematics-and-dynamics/). Extraído desde la página oficial de Universal Robots
+
+
+Los parámetros d, alpha y a se mostrarán en la siguiente tabla
+
+| Junta     | a [m]     | d [m]        | alpha [rad] |
+|----------:|:---------:|:-------------|:------------|
+| Junta 1   | 0         | 0.2363       | π/2         |
+| Junta 2   | -0.6370   | 0            | 0           |
+| Junta 3   | -0.5037   | 0            | 0           |
+| Junta 4   | 0         | 0.2010       | π/2         |
+| Junta 5   | 0         | 0.1593       | -π/2        |
+| Junta 6   | 0         | 0.1543       | 0           |
 ---
 
 
