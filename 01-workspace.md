@@ -27,6 +27,8 @@ Sus aplicaciones más comunes en la industria son:
    - Paletizado de productos pesados 
    - Atornillado de alto par.
 
+![Brazo colaborativo UR30](assets/img/ur30.png)
+
 ---
 
 
