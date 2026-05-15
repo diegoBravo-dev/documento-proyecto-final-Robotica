@@ -8,6 +8,14 @@ nav_order: 4
 
 En esta sección, se abordará el método empleado para la cinemática inversa y los métodos de planificación de trayectoria para poder resolver el problema industrial.
 
+Contenido:
+- [Cinemática Inversa](#cinemática-inversa)
+  - [Método](#método-de-levenberg-marquadt)
+- [Planificación de trayectorias](#planificación-de-trayectoria-mediante-polinomio-quíntico)
+  - [Método de Polinomio Quíntico](#método-de-polinomio-quíntico)
+  - [Método Heurístico](#método-heurístico)
+- [Demostración](#demostración)
+
 ---
 
 ## Cinemática Inversa
@@ -138,7 +146,7 @@ else:
 
 ---
 
-## Planificación de trayectoria mediante Polinomio Quíntico
+## Planificación de trayectorias
 
 Una vez obtenido la pose deseada, se debe de trazar un listado de configuraciones que se deben de modificar en tiempo real para poder llegar de una pose A a una B. A esto se le conoce como planificación de trayectoria.
 
@@ -220,10 +228,19 @@ Es decir, se desea llegar de un punto A a un punto D, pasando por B y C. Lo que 
 
 A continuación, se mostrará un video que implementa estas tres técnicas para trazar la trayectoria y realizar una parte de la tarea completa del robot.
 
+<video controls width="720">
+  <source src="/workspaces/documento-proyecto-final-Robotica/assets/videos/ci_pt.mp4" type="video/mp4">
+  Demostración de la cinemática directa combinada con los métodos de planificación de trayectoria
+</video>
 
+
+Como se puede ver en el video, primero se utiliza Levenberg-Marquadt para calcular la configuración que debe de tener cada articulación del robot para llegar a una pose deseada desde una pose definida (esta se actualiza después de cada trayectoria). Posteriormente se calcula la trayectoria y el robot se desplaza por esta misma hasta llegar a la pose que LM calculó previamente.
+
+
+> Para mayor información visitar el repositorio de [Github asociado al proyecto](https://github.com/diegoBravo-dev/Proyecto-Final-de-Rob-tica-con-un-UR30-en-Robodk) en los método `CinematicaInversa(self)` de `UR30_Class.py` y el archivo `trayectorias.py` 
 
 ---
 
 ## Siguiente sección
 
-[Estilos y personalización visual](04-estilos.md)
+[Control Cinemático](04-control-cin.md)
