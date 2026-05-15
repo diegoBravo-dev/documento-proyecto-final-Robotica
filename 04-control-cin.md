@@ -184,6 +184,8 @@ A continuación, se mostrará un video que ejemplifica el control cinemático ap
 
 Como se puede ver en el video, el robot cumple con la trayectoria impuesta y logra trazar los dos círculos en dos puntos diferentes en un tiempo establecido. Sin embargo, a diferencia de la cinemática inversa, este no es tan preciso y debido a la restricción de controlar la posición cartesiana, la orientación angular puede verse alterada de forma repentina en cada movimiento.
 
+> Para mayor información visitar el repositorio de [Github asociado al proyecto](https://github.com/diegoBravo-dev/Proyecto-Final-de-Rob-tica-con-un-UR30-en-Robodk) en los método `PosicionarRobot()`, `f()`, `euler()`  de `UR30_Class.py` y el archivo `ControlCinematico.py` 
+
 ---
 
 ## Siguiente sección
