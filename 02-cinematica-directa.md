@@ -4,41 +4,25 @@ title: Cinemática Directa
 nav_order: 3
 ---
 
-# Estructura del repositorio
+# Cinemática directa del UR30
 
-En este curso trabajaremos **solo con GitHub Pages + Codespaces**. La meta es que tu repositorio tenga una estructura predecible:
-
-- sabes **dónde editar contenido**,
-- sabes **dónde guardar recursos** (imágenes y PDFs),
-- y entiendes **por qué una página sí o no aparece en el menú**.
+En esta sección se detallará el método que se empleó para poder obtener la cinemática directa del UR30. Además de la forma en la que se obtuvieron los datos de la Pose del TCP del robot y la comprobación del script realizado en Python para obtener estos datos.
 
 ---
 
-## 1) Mapa rápido del repositorio (la estructura que usaremos)
+## Método
 
-```text
-.
-├─ _config.yml
-├─ README.md
-├─ index.md
-├─ 01-publicar-en-github-pages.md
-├─ 02-estructura-del-repo.md
-├─ 03-markdown.md
-├─ 04-navegacion.md
-├─ 05-media.md
-├─ 06-estilos.md
-├─ _includes/
-│  ├─ head_custom.html
-│  └─ footer_custom.html
-└─ assets/
-   ├─ css/
-   │  └─ custom.css
-   ├─ img/
-   │  ├─ logotipo.png
-   │  └─ (tus imagenes)
-   └─ files/
-      └─ (tus PDFs)
+Como anteriormente se mencionó, el método para calcular la Cinemática directa fue el de **Denavit-Hatenberg**, con ayuda de la tabla de parámetros de DH que proporciona Universal Robots sobre sus brazos. 
+
+Una vez se obtuvieran dichos parámetros, estos deben de ser evaluados en la siguiente matriz:
+
+```python
+Aj = array([[cos(self.θ[i]), -sin(self.θ[i])*cos(self.__α[i]), sin(self.θ[i])*sin(self.__α[i]), self.__a[i]*cos(self.θ[i])],
+                        [sin(self.θ[i]), cos(self.θ[i])*cos(self.__α[i]), -cos(self.θ[i])*sin(self.__α[i]), self.__a[i]*sin(self.θ[i])],
+                        [0,              sin(self.__α[i]),                 cos(self.__α[i]),                self.__d[i]],
+                        [0,              0,                                0,                               1]])
 ```
+
 
 ### ¿Qué hace cada cosa? 
 
