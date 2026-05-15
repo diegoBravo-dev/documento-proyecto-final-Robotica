@@ -54,7 +54,7 @@ A continuación se mostrará un diagrama que ayuda a la forma en la que se obtie
 > Diagrama de parámetros de DH para robots [UR](https://www.universal-robots.com/articles/ur/application-installation/dh-parameters-for-calculations-of-kinematics-and-dynamics/). Extraído desde la página oficial de Universal Robots
 
 
-Los parámetros d, alpha y a se mostrarán en la siguiente tabla
+Los parámetros d, alpha y a se mostrarán en la siguiente tabla:
 
 | Junta     | a [m]     | d [m]        | alpha [rad] |
 |----------:|:---------:|:-------------|:------------|
@@ -64,6 +64,13 @@ Los parámetros d, alpha y a se mostrarán en la siguiente tabla
 | Junta 4   | 0         | 0.2010       | π/2         |
 | Junta 5   | 0         | 0.1593       | -π/2        |
 | Junta 6   | 0         | 0.1543       | 0           |
+
+| Campo | Tipo | Ejemplo |
+|------:|:----:|:--------|
+| RAM   | GB   | 8       |
+| CPU   | x86  | i5      |
+
+> Parámetros de DH para robots [UR](https://www.universal-robots.com/articles/ur/application-installation/dh-parameters-for-calculations-of-kinematics-and-dynamics/). Extraído desde la página oficial de Universal Robots
 ---
 
 
