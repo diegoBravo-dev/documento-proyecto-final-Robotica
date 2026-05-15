@@ -4,231 +4,186 @@ title: Control Cinemático
 nav_order: 5
 ---
 
-# Estilos y personalización visual
+# Control Cinemático
 
-Esta sección explica **cómo funciona la personalización visual** en este repositorio y qué debes modificar para poner el sitio con tu identidad (logo, colores, footer, etc.) **sin romper la estructura**.
+En esta sección, se demostrará el uso de control cinemático para que un UR30, ajeno a la solución del problema industrial, pueda dibujar dos círculos en dos puntos diferentes en el espacio.
 
----
-
-## 1) ¿Qué archivos controlan el estilo?
-
-En este repositorio, el estilo y algunos elementos visuales se controlan con **tres piezas**:
-
-1) **CSS** con los colores y ajustes visuales:  
-   - `assets/css/custom.css`
-
-2) **Head** (carga el CSS, favicon y agrega el logo en el título):  
-   - `_includes/head_custom.html`
-
-3) **Footer** (tu footer “propio”, con licencia y “Last modified”):  
-   - `_includes/footer_custom.html`
-
-Estructura:
-
-```text
-.
-├─ _includes/
-│  ├─ head_custom.html
-│  └─ footer_custom.html
-├─ assets/
-│  ├─ css/
-│  │  └─ custom.css
-│  └─ img/
-│     ├─ logotipo.png
-│     └─ favicon.ico
-└─ ...
-```
+Contenido:
+- [Explicación](#explicación)
+- [Ecuaciones Paramétricas](#ecuaciones-paramétricas)
+- [Implementación](#implementación)
+- [Demostración](#demostración)
 
 ---
 
-## 2) “Lo mínimo” para poner tu identidad
+## Explicación
 
-Si solo quieres “poner tu marca” y seguir avanzando con el curso, haz esto:
+Se trata de una técnica con el mismo propósito de la cinemática inversa, satisfacer una Pose deseada. Para ello, se deben de calcular posiciones y velocidades angulares que puedan cumplir una trayectoria deseada. 
 
-### Paso A — Cambia el logo
-Reemplaza el archivo:
+Esta es la fórmula empleada para control Cinemático.
 
-- `assets/img/logotipo.png`
+```python
+dq = Jinv @ (dXd - K@(X - Xd))
+```
 
-**Regla importante:** conserva **exactamente** el nombre `logotipo.png` para no tener que cambiar rutas.
+Donde:
 
-### Paso B — Cambia el favicon
-Reemplaza el archivo:
+- **dq** son las velocidades angulares de cada articulación
+- **Jinv** es la matriz Jacobiana inversa
+- **dXd** son los perfiles de velocidad en cada dimensión de la pose deseada
+- **Xd** es la pose deseada
+- **X** es la pose obtenida
+- **K** es la matriz de ganancias para el control cinemático
 
-- `assets/img/favicon.ico`
+Con esta fórmula, se puede obtener un perfil de velocidades convincente, pero el parámetro deseado no son estos, sino sus integrales.
 
-### Paso C — Ajusta colores (si lo necesitas)
-Edita:
+## Ecuaciones Paramétricas
 
-- `assets/css/custom.css`
+Dentro de la función de Control Cinemático deben de existir las ecuaciones paramétricas para el trazado de trayectorias. 
+Estas son ecuaciones que permiten crear formas geométricas y, para este ejemplo, se usará la ecuación paramétrica del círculo.
 
-Más abajo tienes una guía de “qué cambiar” sin perderte.
+```python
+x, y = c1 + r*cos(ωt), c2 + r*sin(ωt)
+```
+
+Donde
+
+- **c1 y c2** son los centros de la circunferencia en x e y
+- **r** es el radio del círculo
+- **ω** es la frecuencia
+- **t** es el tiempo
 
 ---
 
-## 3) Cómo funciona `head_custom.html` (logo + favicon + CSS)
+## Implementación
 
-Este archivo se inserta en el `<head>` del sitio y hace 3 cosas:
+Primero se deben de calcular la cinemática directa y obtener las ecuaciones de x, y, z con respecto a los ángulos de las articulaciones.
 
-- Carga `custom.css`.
-- Define el favicon.
-- Inserta el logo **antes del texto** del título del sitio (en la barra lateral / encabezado, según el tema).
+> Nota: se puede incluir un control cinemático para orientaciones, pero requiere de mayor capacidad de procesamiento
 
-Código relevante:
+Posteriormente, se debe de construir el jacobiano, derivando cada función (x, y, z) con respecto a una articulación.
 
-```html
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
-<link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" sizes="any">
+```python
+J = matrix([
+  [j11, j12, j13, j14, j15, j16],
+  [j21, j22, j23, j24, j25, j26],
+  [j31, j32, j33, j34, j35, j36]
+])
+```
+Luego, se debe de calcular la pseudo-inversa del jacobiano. Esto debido a que como el control cinemático únicamente controla 3 parámetros, la matriz jacobiana no será cuadrada.
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const titleLink = document.querySelector('.site-title');
-    if (!titleLink || titleLink.querySelector('img')) return;
-
-    const img = document.createElement('img');
-    img.src = "{{ '/assets/img/logotipo.png' | relative_url }}";
-    img.alt = "Logo";
-    img.className = "site-logo";
-    titleLink.prepend(img);
-  });
-</script>
+```python
+# Inversa / pseudoinversa (dependiendo del robot (n) y el problema/tarea (m))
+Jinv = J.getI()
 ```
 
-**Qué modificar aquí:**
-- Normalmente **no necesitas cambiar nada** si mantienes:
-  - `assets/css/custom.css`
-  - `assets/img/logotipo.png`
-  - `assets/img/favicon.ico`
+Después, se debe de trazar una trayectoria. Para este punto, se utilizarán las ecuaciones paramétricas y el método heuristico. 
 
-**Cuándo sí lo cambiarías:**
-- Si decides renombrar archivos (no recomendado).
-- Si quieres insertar otro elemento adicional en el `<head>` (por ejemplo: analytics, meta tags especiales, etc.).
+```python
+# Valores deseados de posición
+if t<2:
+    xd = 0.6537
+    yd = -0.201
+    zd = 1.0326
+elif t>=2 and t<5:
+    xd = 0.8187
+    yd = -0.201
+    zd = 1.0326
+elif t>=5 and t<20:
+    zd = 1.1576 + 0.1*sin(t)
+    yd = -0.201 + 0.1*cos(t)
+    xd = 0.8187
+elif t>=20 and t<=25:
+    xd = -0.4
+    yd = -0.201
+    zd = 1.0326
+elif t>=25 and t<=40:
+    zd = 1.0326 + 0.1*sin(t)
+    yd = -0.201 + 0.1*cos(t)
+    xd = 0.2737
+else:
+    xd = 0.6537
+    yd = -0.201
+    zd = 1.0326
+```
+
+Para las velocidades deseadas, las ecuaciones paramétricas deben de ser derivadas con respecto al tiempo.
+
+```python
+# Valores deseados de velocidad
+if t<2:
+    dxd = 0
+    dyd = 0
+    dzd = 0
+elif t>=2 and t<5:
+    dxd = 0
+    dyd = 0
+    dzd = 0
+elif t>=5 and t<20:
+    dzd = 0.1*cos(t)
+    dyd = -0.1*sin(t)
+    dxd = 0
+elif t>=20 and t<=25:
+    dxd = 0
+    dyd = 0
+    dzd = 0
+elif t>=25 and t<=30:
+    dxd = 0
+    dyd = 0
+    dzd = 0
+else:
+    dxd = 0
+    dyd = 0
+    dzd = 0
+```
+
+Ahora, se debe de construir la matriz de ganancias de control para aplicarla con el control cinemático. Las ganancias pueden variar a gusto del usuario o se pueden calcular mediante técnicas de control lineal.
+
+```python
+#Ganancias de control
+kx = 1
+ky = 2
+kz = 3
+
+K = matrix([[kx, 0, 0],
+            [0, ky, 0],
+            [0, 0, kz]])
+```
+
+Y posteriormente, calcular dq con la fórmula de control cinemático
+
+```python
+dq = Jinv @ (dXd - K@(X - Xd))
+```
+
+Ahora, esta función será añadida a un método numérico para resolver ecuaciones diferenciales ordinarias. Para python, se recomienda usar el método de Euler/Euler mejorado ya que con Rugen-Kutta, el tiempo de procesamiento puede incrementarse considerablemente.
+
+```python
+q = zeros((len(ts), 6))
+
+q[0, :] = θs
+
+for i in range(len(ts) - 1):
+
+    dq = f(ts[i], q[i, :])
+
+    q[i+1, :] = q[i, :] + h * transpose(dq)
+
+t = array(ts)
+```
+
+tras pasar por Euler, se obtendrá un vector de tiempos y una matriz de configuraciones para las articulaciones del robot, la cual serán usadas para poder mover dicho robot en los puntos necesarios para llegar a la Pose del efector final deseada.
 
 ---
 
-## 4) Cómo funciona `custom.css` (qué tocar y qué NO tocar)
+## Demostración
 
-`assets/css/custom.css` contiene reglas para:
+A continuación, se mostrará un video que ejemplifica el control cinemático aplicado a un UR30.
 
-- Colores del header y sidebar.
-- Colores de enlaces (y quitar el morado/azul por defecto).
-- Estados hover/active del menú.
-- Jerarquía visual del menú (nivel 1, 2, 3).
-- Ajustes del botón hamburguesa en móvil.
-- Ocultar el footer original del tema y mostrar tu footer personalizado.
-- Tamaño del logo en el título.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J_IBu4eSin4?si=7oU1DSKTjamPcCrn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-### 4.1 Paleta rápida (qué buscar)
-
-En este CSS verás repetidos estos colores:
-
-- **Rojo principal:** `#E00034`
-- **Rosa claro/acento:** `#FFD5DE`
-- **Rojo oscuro hover:** `#b00028`
-
-Recomendación práctica:
-- Para cambiar la “marca”, normalmente te basta con cambiar:
-  - `#E00034` (color principal)
-  - `#FFD5DE` (acento)
-  - y la variable `--link-color`.
-
-Ejemplo de variable de enlaces:
-
-```css
-:root { --link-color: #E00034; }
-a, a:visited { color: var(--link-color); }
-```
-
-### 4.2 Sidebar y navegación (menú lateral)
-
-El CSS fuerza el sidebar en rojo y los links en blanco:
-
-```css
-.side-bar,
-.side-bar .site-nav,
-.side-bar .nav-list { background-color: #E00034 !important; }
-
-.nav-list .nav-list-link,
-.nav-list .nav-list-link:visited { color: #ffffff !important; }
-```
-
-Y define estados activos/hover más visibles.
-
-### 4.3 Footer: ocultar el del tema y usar el tuyo
-
-El CSS oculta el footer del tema:
-
-```css
-footer.site-footer { display: none !important; }
-```
-
-Y define estilos para tu footer:
-
-```css
-.custom-footer { ... }
-.custom-footer a { ... }
-```
-
-Esto funciona en conjunto con `_includes/footer_custom.html`.
-
----
-
-## 5) Footer personalizado (`footer_custom.html`)
-
-Tu footer actual:
-
-- Muestra copyright.
-- Enlaza a tu perfil.
-- Enlaza a la licencia CC BY 4.0.
-- Enlaza a la página “Uso de IA”.
-- Muestra “Last modified” con fecha/hora.
-
-Ejemplo:
-
-```html
-<footer class="custom-footer">
-  <p class="custom-footer__copy">
-    Copyright © 2026 IBERO.
-    <a href="...">Huber Giron</a>.
-    <a href="...">CC BY 4.0</a>.
-    <a href="{{ '/uso-ia/' | relative_url }}">Uso de IA</a>
-  </p>
-
-  <p class="custom-footer__modified">
-    <strong>Last modified:</strong>
-    {{ modified | date: "%A, %B %-d, %Y at %H:%M" }}
-  </p>
-</footer>
-```
-
-### Qué cambiar aquí
-- El texto “Copyright © 2026 …”.
-- Tu nombre y enlace.
-- La licencia (si aplica).
-- El enlace “Uso de IA” (si quieres ocultarlo o moverlo).
-
----
-
-## 6) Checklist rápido cuando “no se ve” el cambio
-
-- **Guardaste el archivo** (en Codespaces o en tu editor).
-- Hiciste **commit** y **push** al repositorio.
-- Esperaste a que **GitHub Actions** termine (verde).
-- Abriste tu sitio y forzaste recarga:
-   - Windows: `Ctrl + F5` o `Ctrl + Shift + R`
-   - macOS: `Cmd + Shift + R`
-
-Tip de diagnóstico:
-- Abre directamente el CSS en el navegador:  
-  `TU_URL/assets/css/custom.css`  
-  Si no carga, el problema es de ruta o de build.
-
+Como se puede ver en el video, el robot cumple con la trayectoria impuesta y logra trazar los dos círculos en dos puntos diferentes en un tiempo establecido. Sin embargo, a diferencia de la cinemática inversa, este no es tan preciso y debido a la restricción de controlar la posición cartesiana, la orientación angular puede verse alterada de forma repentina en cada movimiento.
 
 ---
 
 ## Siguiente sección
-
-Este es el último tema de personalización. Puedes volver a:
-
-- [Inicio](index.md)
-- [Publicar en GitHub Pages](01-publicar-en-github-pages.md)
