@@ -10,9 +10,9 @@ En esta página, se muestran y detallan los elementos utilizados para la simulac
 
 Contenido:
 - [UR30](#brazo-de-universal-robots-ur30)
-- [2. Cinemática Directa](02-estructura-del-repo.md)
-- [3. Cinemática Inversa y Planificación de Trayectorias](03-markdown.md)
-- [4. Control Cinemático](04-estilos.md)
+- [Generic Paint Sprayer](#herramienta-generic-paint-sprayer)
+- [Mesa de trabajo](#mesa-de-trabajo)
+- [Chasis Ehang 184](#chasis-del-ehang-184)
 
 ---
 
