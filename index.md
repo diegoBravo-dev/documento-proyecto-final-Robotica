@@ -6,7 +6,7 @@ nav_order: 1
 
 # Proyecto Pintura de una pieza con un UR30 en RoboDK 
 
-## Diego Bravo Pérez
+> Elaborado por: Diego Bravo Pérez
 
 En esta página, se compila y documenta el trabajo desarrollado para la realización de una simulación de un proceso de pintado industrial en **RoboDK**. El proceso a recrear es ciclo completo de pintado, donde el **UR30** estará equipado con un **Generic-Paint-Sprayer** y deberá de cubrir las áreas deseadas del chasis de un **Ehang 184**.
 
