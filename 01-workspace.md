@@ -56,7 +56,7 @@ A continuación se mostrará un diagrama que ayuda a la forma en la que se obtie
 
 Los parámetros d, alpha y a se mostrarán en la siguiente tabla:
 
-| Junta     | a [m]     | d [m]        | alpha [rad] |
+| Junta     | a         | d            | alpha       |
 |----------:|:---------:|:-------------|:------------|
 | Junta 1   | 0         | 0.2363       | π/2         |
 | Junta 2   | -0.6370   | 0            | 0           |
@@ -64,6 +64,7 @@ Los parámetros d, alpha y a se mostrarán en la siguiente tabla:
 | Junta 4   | 0         | 0.2010       | π/2         |
 | Junta 5   | 0         | 0.1593       | -π/2        |
 | Junta 6   | 0         | 0.1543       | 0           |
+
 
 | Campo | Tipo | Ejemplo |
 |------:|:----:|:--------|
