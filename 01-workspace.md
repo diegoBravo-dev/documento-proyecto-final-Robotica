@@ -56,7 +56,7 @@ A continuación se mostrará un diagrama que ayuda a la forma en la que se obtie
 
 Los parámetros d, alpha y a se mostrarán en la siguiente tabla:
 
-| Junta     | a         | d            | alpha       |
+| Junta     | a [m]     | d [m]        | alpha [rad] |
 |----------:|:---------:|:-------------|:------------|
 | Junta 1   | 0         | 0.2363       | π/2         |
 | Junta 2   | -0.6370   | 0            | 0           |
@@ -66,8 +66,40 @@ Los parámetros d, alpha y a se mostrarán en la siguiente tabla:
 | Junta 6   | 0         | 0.1543       | 0           |
 
 
-> Parámetros de DH para robots [UR](https://www.universal-robots.com/articles/ur/application-installation/dh-parameters-for-calculations-of-kinematics-and-dynamics/). Extraído desde la página oficial de Universal Robots
+Con los datos de esta tabla, se podrá obtener la Pose (matriz homogenea) del efector final del robot con respecto a la base. Es decir, su cinemática directa.
 
+---
+
+## Herramienta Generic Paint Sprayer
+
+El **Generic Paint Sprayer** es la herramienta que se acopla al efector final del UR30. No está basado en alguna herramienta real/comercial, por lo que esta es únicamente para uso académico.
+
+![Herramienta Generic Paint Sprayer](assets/img/sprayer.png)
+
+> Modelo de [Generic Paint Sprayer](https://robodk.com/3D/es/tool/Generic-Paint-Sprayer) extraído desde **RoboDK**
+
+---
+
+## Mesa de trabajo
+
+A continuación se mostrará la mesa de trabajo empleada para la simulación.
+
+![Mesa de trabajo](assets/img/mesa.png)
+
+> Modelo de [Mesa de trabajo](https://robodk.com/3D/es/object/Table-1200x1000mm-Welding) extraído desde **RoboDK**
+
+## Chasis del EHang 184
+
+El EHang 184 es el primer vehículo aéreo autónomo (AAV) eléctrico del mundo diseñado para transportar pasajeros, presentado en 2016 como un taxi dron monoplaza. Diseñado para distancias cortas, alcanza entre 100 a 130 km/h y funciona sin piloto.
+El pasajero selecciona el destino a través de una aplicación.
+
+Para este proyecto, se buscó en internet un stl con un modelo a escala de un EHang 184. Se optó por pintar el chasis como si se tratara de una linea de producción de este vehículo.
+
+A continuación se mostrará el modelo.
+
+![Chasis de Ehang 184](assets/img/ehang.png)
+
+> Modelo del [Chasis de Ehang 184](https://www.elecrow.com/sharepj/future-in-the-sky-ehang-184-3d-printed-air-taxi-1112.html) extraído desde **ELECROW**
 
 ---
 
