@@ -66,14 +66,10 @@ Los parámetros d, alpha y a se mostrarán en la siguiente tabla:
 | Junta 6   | 0         | 0.1543       | 0           |
 
 
-| Campo | Tipo | Ejemplo |
-|------:|:----:|:--------|
-| RAM   | GB   | 8       |
-| CPU   | x86  | i5      |
-
 > Parámetros de DH para robots [UR](https://www.universal-robots.com/articles/ur/application-installation/dh-parameters-for-calculations-of-kinematics-and-dynamics/). Extraído desde la página oficial de Universal Robots
----
 
+
+---
 
 ## Siguiente sección
 [Estructura del repositorio ](02-estructura-del-repo.md)
