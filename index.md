@@ -30,3 +30,4 @@ Contenido:
 - [2. Cinemática Directa](02-estructura-del-repo.md)
 - [3. Cinemática Inversa y Planificación de Trayectorias](03-cinematica-inversa-planeacion-trayectoria.md)
 - [4. Control Cinemático](04-control-cin.md)
+- [5. Resultados y Conclusiones](05-conclusion.md)
