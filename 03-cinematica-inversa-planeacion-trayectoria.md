@@ -228,8 +228,7 @@ Es decir, se desea llegar de un punto A a un punto D, pasando por B y C. Lo que 
 
 A continuación, se mostrará un video que implementa estas tres técnicas para trazar la trayectoria y realizar una parte de la tarea completa del robot.
 
-<iframe width="560" height="315" src="https://youtu.be/4wI7uOumJFQ" title="Control Cinemático con Planificación de trayectorias" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-</iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4wI7uOumJFQ?si=NmYQe31jewrQlUDT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Como se puede ver en el video, primero se utiliza Levenberg-Marquadt para calcular la configuración que debe de tener cada articulación del robot para llegar a una pose deseada desde una pose definida (esta se actualiza después de cada trayectoria). Posteriormente se calcula la trayectoria y el robot se desplaza por esta misma hasta llegar a la pose que LM calculó previamente.
 
